@@ -7,6 +7,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --blue-color: #0085ca;
 }
 
 * {
@@ -266,6 +267,14 @@ img {
 .badge-dark,
 .alert-dark {
   background: var(--dark-color);
+  color: #fff;
+}
+
+.btn-blue,
+.bg-blue,
+.badge-blue,
+.alert-blue {
+  background: var(--blue-color);
   color: #fff;
 }
 
