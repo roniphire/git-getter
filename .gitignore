@@ -170,6 +170,7 @@ sketch
 # $ git config --global mergetool.keepBackup false
 *.orig
 .github
+.toml
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
@@ -180,3 +181,9 @@ sketch
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+
+### Production ###
+.toml
+
+# Local Netlify folder
+.netlify
