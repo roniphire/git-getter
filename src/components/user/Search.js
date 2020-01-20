@@ -1,52 +1,46 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Search extends Component {
-  state = {
-    text: '',
-  };
+const Search = ({ searchUsers, showClearButton, clearUsers }) => {
+  const [text, setText] = useState('');
 
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClearButton: PropTypes.bool.isRequired,
-  };
+  const onChange = e => setText(e.target.value);
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: '' });
+    searchUsers(text);
+    setText('');
   };
 
-  render() {
-    const { clearUsers, showClearButton } = this.props;
+  return (
+    <div>
+      <form onSubmit={onSubmit} className='form'>
+        <input
+          type='text'
+          name='text'
+          placeholder='Search Users...'
+          value={text}
+          onChange={onChange}
+        />
+        <input
+          type='submit'
+          value='Search'
+          className='btn btn-blue btn-block'
+        />
+      </form>
+      {showClearButton && (
+        <button className='btn btn-danger btn-block' onClick={clearUsers}>
+          Clear Search List
+        </button>
+      )}
+    </div>
+  );
+};
 
-    return (
-      <div>
-        <form onSubmit={this.onSubmit} className='form'>
-          <input
-            type='text'
-            name='text'
-            placeholder='Search Users...'
-            value={this.state.text}
-            onChange={this.onChange}
-          />
-          <input
-            type='submit'
-            value='Search'
-            className='btn btn-blue btn-block'
-          />
-        </form>
-        {showClearButton && (
-          <button className='btn btn-danger btn-block' onClick={clearUsers}>
-            Clear Search List
-          </button>
-        )}
-      </div>
-    );
-  }
-}
+Search.propTypes = {
+  searchUsers: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+  showClearButton: PropTypes.bool.isRequired,
+};
 
 export default Search;
