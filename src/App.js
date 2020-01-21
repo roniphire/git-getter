@@ -1,9 +1,8 @@
 /** Main Application functionality */
 
 /** Dependencies */
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
 
 /** Components */
 import './App.css';
@@ -17,21 +16,6 @@ import User from './components/user/User';
 import GithubState from './context/github/GithubState';
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [repos, setRepos] = useState([]);
-
-  // Get single user repository
-  const getUserRepos = async username => {
-    setLoading(true);
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`,
-    );
-
-    setRepos(res.data);
-    setLoading(false);
-  };
-
   return (
     <GithubState>
       <Router>
@@ -50,18 +34,7 @@ const App = () => {
                 )}
               />
               <Route exact path='/about' component={About} />
-              <Route
-                exact
-                path='/user/:login'
-                render={props => (
-                  <User
-                    {...props}
-                    getUserRepos={getUserRepos}
-                    repos={repos}
-                    loading={loading}
-                  />
-                )}
-              />
+              <Route exact path='/user/:login' component={User} />
             </Switch>
           </div>
         </div>
