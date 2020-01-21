@@ -1,7 +1,13 @@
+/** Dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+/** Components */
+
+/** Context */
+
+/** Fragment */
 const Navbar = ({ icon, title }) => {
   return (
     <nav className='navbar bg-primary'>

@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+/** Dependencies */
+import React, { useState, useContext } from 'react';
 
-const Search = ({ searchUsers, showClearButton, clearUsers }) => {
+/** Components */
+
+/** Context */
+import GithubContext from '../../context/github/githubContext';
+
+/** Fragment */
+const Search = () => {
+  // Initialize GithubContext
+  const githubContext = useContext(GithubContext);
+
   const [text, setText] = useState('');
 
   const onChange = e => setText(e.target.value);
 
   const onSubmit = e => {
     e.preventDefault();
-    searchUsers(text);
+    githubContext.searchUsers(text);
     setText('');
   };
 
@@ -28,19 +37,16 @@ const Search = ({ searchUsers, showClearButton, clearUsers }) => {
           className='btn btn-blue btn-block'
         />
       </form>
-      {showClearButton && (
-        <button className='btn btn-danger btn-block' onClick={clearUsers}>
+      {githubContext.users.length > 0 && (
+        <button
+          className='btn btn-danger btn-block'
+          onClick={githubContext.clearUsers}
+        >
           Clear Search List
         </button>
       )}
     </div>
   );
-};
-
-Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
-  clearUsers: PropTypes.func.isRequired,
-  showClearButton: PropTypes.bool.isRequired,
 };
 
 export default Search;

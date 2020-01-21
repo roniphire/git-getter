@@ -1,6 +1,12 @@
+/** Dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/** Components */
+
+/** Context */
+
+/** Fragment */
 const ReposItem = ({ repo }) => {
   return (
     <div className='card'>

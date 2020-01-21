@@ -1,5 +1,11 @@
+/** Dependencies */
 import React, { Fragment } from 'react';
 
+/** Components */
+
+/** Context */
+
+/** Fragment */
 const about = () => {
   return (
     <Fragment>

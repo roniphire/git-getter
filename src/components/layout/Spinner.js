@@ -1,6 +1,12 @@
+/** Dependencies */
 import React, { Fragment } from 'react';
 import spinner from './spinner.gif';
 
+/** Components */
+
+/** Context */
+
+/** Fragment */
 const Spinner = () => (
   <Fragment>
     <img
